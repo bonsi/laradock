@@ -156,12 +156,13 @@ ENV INSTALL_NODE ${INSTALL_NODE}
 ENV NVM_DIR /home/laradock/.nvm
 RUN if [ ${INSTALL_NODE} = true ]; then \
     # Install nvm (A Node Version Manager)
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.6/install.sh | bash && \
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash && \
         . $NVM_DIR/nvm.sh && \
         nvm install ${NODE_VERSION} && \
         nvm use ${NODE_VERSION} && \
         nvm alias ${NODE_VERSION} && \
-        npm install -g gulp bower vue-cli \
+        nvm alias default ${NODE_VERSION} && \
+        npm install -g gulp bower vue-cli acorn-jsx \
 ;fi
 
 # Wouldn't execute when added to the RUN statement in the above block
@@ -192,6 +193,7 @@ ENV INSTALL_YARN ${INSTALL_YARN}
 
 RUN if [ ${INSTALL_YARN} = true ]; then \
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && \
+    nvm use node && \
     curl -o- -L https://yarnpkg.com/install.sh | bash && \
     echo "" >> ~/.bashrc && \
     echo 'export PATH="$HOME/.yarn/bin:$PATH"' >> ~/.bashrc \
