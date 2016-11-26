@@ -61,6 +61,7 @@ Laradock is configured to run Laravel Apps by default, and it can be modifyed to
 		- [Access workspace via ssh](#Workspace-ssh)
 		- [MySQL access from host](#MySQL-access-from-host)
 		- [MySQL root access](#MySQL-root-access)
+		- [Change MySQL port](#Change-MySQL-port)
 		- [Use custom Domain](#Use-custom-Domain)
 		- [Enable Global Composer Build Install](#Enable-Global-Composer-Build-Install)
 		- [Install Prestissimo](#Install-Prestissimo)
@@ -213,7 +214,7 @@ Choose the setup the best suits your needs.
 *(In case you want a Docker environment for each project)*
 
 ##### A.1) Setup environment in existing Project:
-*(In case you already have a project, and you want to setup an environemnt to run it)*
+*(In case you already have a project, and you want to setup an environment to run it)*
 
 1 - Clone this repository on your project root directory:
 
@@ -1164,6 +1165,17 @@ The default username and password for the root mysql user are `root` and `root `
 4 - Run any commands `show databases`, `show tables`, `select * from.....`.
 
 
+<a name="Change-MySQL-port"></a>
+### Change MySQL port
+
+Modify the `mysql/my.cnf` file to set your port number, `1234` is used as an example.
+
+```
+[mysqld] 
+port=1234
+```
+
+If you need <a href="#MySQL-access-from-host">MySQL access from your host</a>, do not forget to change the internal port number (`"3306:3306"` -> `"3306:1234"`) in the docker-compose config file.
 
 <a name="Use-custom-Domain"></a>
 ### Use custom Domain (instead of the Docker IP)
@@ -1319,7 +1331,18 @@ It should be like this:
 
 <br>
 <a name="debugging"></a>
-### Debugging
+
+### PHPStorm
+Remote debug Laravel web and phpunit tests.
+
+####[Full Guide Here](https://github.com/LaraDock/laradock/blob/master/_guides/phpstorm.md)
+
+
+<br>
+<a name="Misc"></a>
+
+### Miscellaneous
+
 
 *Here's a list of the common problems you might face, and the possible solutions.*
 
@@ -1340,9 +1363,9 @@ Use `http://127.0.0.1` instead of `http://localhost` in your browser.
 
 
 
-#### I see an error message containing `address already in use`
+#### I see an error message containing `address already in use` or `port is already allocated`
 
-Make sure the ports for the services that you are trying to run (80, 3306, etc.) are not being used already by other programs, such as a built in `apache`/`httpd` service or other development tools you have installed.
+Make sure the ports for the services that you are trying to run (22, 80, 443, 3306, etc.) are not being used already by other programs on the host, such as a built in `apache`/`httpd` service or other development tools you have installed.
 
 
 
