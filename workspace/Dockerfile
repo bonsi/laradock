@@ -247,6 +247,15 @@ USER laradock
 RUN echo "" >> ~/.bashrc && \
     echo 'export PATH="/var/www/vendor/bin:$PATH"' >> ~/.bashrc
 
+
+#
+#--------------------------------------------------------------------------
+# Personal Touch
+#--------------------------------------------------------------------------
+#
+RUN echo 'alias art="php artisan "' >> ~/.bashrc && echo 'alias cda="composer dump-autoload"' >> ~/.bashrc
+
+
 #
 #--------------------------------------------------------------------------
 # Final Touch
