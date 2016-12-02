@@ -27,7 +27,7 @@ services:
                 - INSTALL_WORKSPACE_SSH=false
                 - PUID=1000
                 - PGID=1000
-                - NODE_VERSION=lts/*
+                - NODE_VERSION=stable
                 - TZ=GMT+1
         volumes_from:
             - applications
@@ -36,6 +36,7 @@ services:
             - "dockerhost:127.0.0.1"
         ports:
            - "2222:22"
+           - "3000:3000"
         tty: true
         dns:
           - 8.8.8.8
