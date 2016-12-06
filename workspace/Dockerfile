@@ -254,7 +254,7 @@ RUN echo "" >> ~/.bashrc && \
 #--------------------------------------------------------------------------
 #
 RUN echo 'alias art="php artisan "' >> ~/.bashrc \
-	&& echo 'alias cda="composer dump-autoload"' >> ~/.bashrc
+	&& echo 'alias cda="composer dump-autoload"' >> ~/.bashrc \
 	&& echo 'alias gw="gulp watch"' >> ~/.bashrc
 
 #
